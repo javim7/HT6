@@ -166,7 +166,7 @@ public class Main {
             for (String llave: coleccion.keySet()) {
                 String key = llave.toString();
                 String value = coleccion.get(llave).toString();
-                //System.out.println(key + " " + value);
+                System.out.println(key + " " + value);
             }
         }
 
