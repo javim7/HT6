@@ -113,7 +113,7 @@ public class Main {
         if(opcion2 == 1) {
 
             //pidiendo el nombre de la carta y guardandola a una variable
-            System.out.println("\nIngrese el nombre de la carta que quiere agregar a su coleccion.");
+            System.out.println("\nIngrese el nombre de la carta que quiere agregar a su coleccion.\n");
             String llave = scan.nextLine();
             llave = scan.nextLine();
 
@@ -139,7 +139,7 @@ public class Main {
         if(opcion2 == 2) {
 
             //pidiendo el nombre de la carta
-            System.out.println("\nIngrese el nombre de la carta del cual quiera ver su tipo");
+            System.out.println("\nIngrese el nombre de la carta del cual quiera ver su tipo.\n");
             String llave = scan.nextLine();
             llave = scan.nextLine();
 
@@ -148,7 +148,7 @@ public class Main {
 
                 String tipo = coleccion.get(llave);
 
-                System.out.println("\nEl tipo de " + llave + " es" + tipo);
+                System.out.println("\nEl tipo de " + llave + " es: " + tipo);
 
             } else{
                 System.out.println("\n" + llave + " no es parte de su coleccion!");
@@ -160,9 +160,41 @@ public class Main {
         //empezando opcion 3, mostrar info de las cartes en mi coleccion
         if(opcion2 == 3) {
 
-            String mapa = coleccion.toString();
+            ArrayList<String> llaves = new ArrayList<String>();
+            ArrayList<String> valores = new ArrayList<String>();
 
-            System.out.println(mapa);
+            for (String llave: coleccion.keySet()) {
+                String key = llave.toString();
+                String value = coleccion.get(llave).toString();
+                //System.out.println(key + " " + value);
+            }
+        }
+
+
+        //empezando opcion 4, mostrar info de las cartas ordenadas por tipo
+        if(opcion2 == 4) {
+
+        }
+
+
+         //empezando opcion 5 mostrar nombre y tipo de todas las cartas
+         if(opcion2 == 5) {
+
+            System.out.println("NOMBRE-------------------------------------------------------------TIPO\n");
+
+            //haciendo for each para poder imprimir todas las cartas
+            for (String llave: deck.keySet()) {
+                String key = llave.toString();
+                String value = deck.get(llave).toString();
+                System.out.println(key + "---------------------------------------" + value);
+            }
+            
+        }
+
+
+         //empezando opcion 6, mostrar nombre y tipo de todas las cartas ordenadas por tipo
+         if(opcion2 == 6) {
+            
         }
 
 
