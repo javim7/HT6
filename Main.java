@@ -6,6 +6,14 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.io.FileNotFoundException;
 
+/***************************************
+ * @author Javier Mombiela
+ * @author Jorge Caballeros
+ * 
+ * Clase Main, funcionamiento del programa
+ * y jalar datos del factory..
+ ***************************************/
+
 
 public class Main {
     public static void main(String[] args) {
@@ -15,8 +23,8 @@ public class Main {
 
 
         //creando los mapas
-        HashMap<String, String> deck = new HashMap<String, String>(); //mapa que almacena todas las cartas inicialmente
-        HashMap<String, String> coleccion = new HashMap<String, String>(); //mapa de la coleccion del usuario
+        Map<String, String> deck = new HashMap<String, String>(); //mapa que almacena todas las cartas inicialmente
+        Map<String, String> coleccion = new HashMap<String, String>(); //mapa de la coleccion del usuario
 
         //se utiliza un try catch para aseguranos que el archivo pueda ser leido correctamente 
         try{
@@ -46,7 +54,7 @@ public class Main {
             System.out.println("El archivo de texto cards_desc.txt no ha sido encontrado.");
         }
 
-        while(true) {
+        
 
 
               //menu 1: ver que mapa va a usar el usuario
@@ -76,127 +84,135 @@ public class Main {
             }
         } 
 
+        
+        //empezando un ciclo infinito para las opciones
+        boolean seguir = true;
+        while(seguir) {
 
+            //menu 2: ver que opcion elige el usuario
+            System.out.println("\nElija una de las siguientes opciones.");
+            System.out.println("[1] Agregar carta a la coleccion.");
+            System.out.println("[2] Mostrar tipo de carta especificada.");
+            System.out.println("[3] Mostrar, nombre, tipo y cantidad de las cartas en mi coleccion.");
+            System.out.println("[4] Mostrar, nombre, tipo y cantidad de las cartas en mi coleccion, ordenadas por tipo.");
+            System.out.println("[5] Mostrar nombre y tipo de todas las cartas existentes.");
+            System.out.println("[6] Mostrar nombre y tipo de todas las cartas existentes, ordenadas por tipo.");
+            System.out.println("[7] Salir del programa.");
 
-        //menu 2: ver que opcion elige el usuario
-        System.out.println("\nElija una de las siguientes opciones.");
-        System.out.println("[1] Agregar carta a la coleccion.");
-        System.out.println("[2] Mostrar tipo de carta especificada.");
-        System.out.println("[3] Mostrar, nombre, tipo y cantidad de las cartas en mi coleccion.");
-        System.out.println("[4] Mostrar, nombre, tipo y cantidad de las cartas en mi coleccion, ordenadas por tipo.");
-        System.out.println("[5] Mostrar nombre y tipo de todas las cartas existentes.");
-        System.out.println("[6] Mostrar nombre y tipo de todas las cartas existentes, ordenadas por tipo.");
+            int opcion2 = 0;
 
-        int opcion2 = 0;
-
-        while(true){
-            try{
-                System.out.print("\nOpcion: ");
-                opcion2 = scan.nextInt();
-                //(Programación defensiva)
-                //Protección por si el usuario elige un número menor a uno o mayor a dos, seguirá pidiendo la opción. 
-                if(opcion2 > 6 || opcion2 < 1){
-                    System.out.println("Opcion incorrecta, intenta de nuevo..");
+            while(true){
+                try{
+                    System.out.print("\nOpcion: ");
+                    opcion2 = scan.nextInt();
+                    //(Programación defensiva)
+                    //Protección por si el usuario elige un número menor a uno o mayor a dos, seguirá pidiendo la opción. 
+                    if(opcion2 > 7 || opcion2 < 1){
+                        System.out.println("Opcion incorrecta, intenta de nuevo..");
+                    }
+                    //Si el usuario ingresa los datos correctos terminará el ciclo while
+                    else{break;}
                 }
-                //Si el usuario ingresa los datos correctos terminará el ciclo while
-                else{break;}
-            }
-            //Si el usuario ingresa una letra regresará un mensaje de error. 
-            catch(Exception o){
-                scan.nextLine();
-                System.out.println("Caracter invalido! Intenta de nuevo..");
-            }
-        } 
+                //Si el usuario ingresa una letra regresará un mensaje de error. 
+                catch(Exception o){
+                    scan.nextLine();
+                    System.out.println("Caracter invalido! Intenta de nuevo..");
+                }
+            } 
 
 
-        //empezando la opcion 1, agregar cartas a la coleccion
-        if(opcion2 == 1) {
+            //empezando la opcion 1, agregar cartas a la coleccion
+            if(opcion2 == 1) {
 
-            //pidiendo el nombre de la carta y guardandola a una variable
-            System.out.println("\nIngrese el nombre de la carta que quiere agregar a su coleccion.\n");
-            String llave = scan.nextLine();
-            llave = scan.nextLine();
+                //pidiendo el nombre de la carta y guardandola a una variable
+                System.out.println("\nIngrese el nombre de la carta que quiere agregar a su coleccion.\n");
+                String llave = scan.nextLine();
+                llave = scan.nextLine();
 
-            //haciendo un if para ver si la carta existe o no
-            if(deck.containsKey(llave)) {
+                //haciendo un if para ver si la carta existe o no
+                if(deck.containsKey(llave)) {
 
-                System.out.println("\nCarta encontrada! " + llave + " agregada a su coleccion!");
+                    System.out.println("\nCarta encontrada! " + llave + " agregada a su coleccion!");
 
-                //encontrando el valor de la llave
-                String valor = deck.get(llave);
+                    //encontrando el valor de la llave
+                    String valor = deck.get(llave);
 
-                //agregando llave y valor a la coleccion
-                coleccion.put(llave, valor);
+                    //agregando llave y valor a la coleccion
+                    coleccion.put(llave, valor);
 
-            } else{
-                System.out.println("\nERROR! " + llave + " no existe!");
-            }
+                } else{
+                    System.out.println("\nERROR! " + llave + " no existe!");
+                }
 
-        }
-
-
-        //empezando la opcion 2, mostrando el tipo de la carta seleccionada
-        if(opcion2 == 2) {
-
-            //pidiendo el nombre de la carta
-            System.out.println("\nIngrese el nombre de la carta del cual quiera ver su tipo.\n");
-            String llave = scan.nextLine();
-            llave = scan.nextLine();
-
-            //haciendo un if para ver si la carta existe o no
-            if(coleccion.containsKey(llave)) {
-
-                String tipo = coleccion.get(llave);
-
-                System.out.println("\nEl tipo de " + llave + " es: " + tipo);
-
-            } else{
-                System.out.println("\n" + llave + " no es parte de su coleccion!");
             }
 
-        }
 
+            //empezando la opcion 2, mostrando el tipo de la carta seleccionada
+            if(opcion2 == 2) {
 
-        //empezando opcion 3, mostrar info de las cartes en mi coleccion
-        if(opcion2 == 3) {
+                //pidiendo el nombre de la carta
+                System.out.println("\nIngrese el nombre de la carta del cual quiera ver su tipo.\n");
+                String llave = scan.nextLine();
+                llave = scan.nextLine();
 
-            ArrayList<String> llaves = new ArrayList<String>();
-            ArrayList<String> valores = new ArrayList<String>();
+                //haciendo un if para ver si la carta existe o no
+                if(coleccion.containsKey(llave)) {
 
-            for (String llave: coleccion.keySet()) {
-                String key = llave.toString();
-                String value = coleccion.get(llave).toString();
-                System.out.println(key + " " + value);
+                    String tipo = coleccion.get(llave);
+
+                    System.out.println("\nEl tipo de " + llave + " es: " + tipo);
+
+                } else{
+                    System.out.println("\n" + llave + " no es parte de su coleccion!");
+                }
+
             }
-        }
 
 
-        //empezando opcion 4, mostrar info de las cartas ordenadas por tipo
-        if(opcion2 == 4) {
+            //empezando opcion 3, mostrar info de las cartes en mi coleccion
+            if(opcion2 == 3) {
 
-        }
+                ArrayList<String> llaves = new ArrayList<String>();
+                ArrayList<String> valores = new ArrayList<String>();
 
-
-         //empezando opcion 5 mostrar nombre y tipo de todas las cartas
-         if(opcion2 == 5) {
-
-            System.out.println("NOMBRE-------------------------------------------------------------TIPO\n");
-
-            //haciendo for each para poder imprimir todas las cartas
-            for (String llave: deck.keySet()) {
-                String key = llave.toString();
-                String value = deck.get(llave).toString();
-                System.out.println(key + "---------------------------------------" + value);
+                for (String llave: coleccion.keySet()) {
+                    String key = llave.toString();
+                    String value = coleccion.get(llave).toString();
+                    System.out.println(key + " " + value);
+                }
             }
-            
-        }
 
 
-         //empezando opcion 6, mostrar nombre y tipo de todas las cartas ordenadas por tipo
-         if(opcion2 == 6) {
-            
-        }
+            //empezando opcion 4, mostrar info de las cartas ordenadas por tipo
+            if(opcion2 == 4) {
 
+            }
+
+
+            //empezando opcion 5 mostrar nombre y tipo de todas las cartas
+            if(opcion2 == 5) {
+
+                System.out.println("NOMBRE-------------------------------------------------------------TIPO\n");
+
+                //haciendo for each para poder imprimir todas las cartas
+                for (String llave: deck.keySet()) {
+                    String key = llave.toString();
+                    String value = deck.get(llave).toString();
+                    System.out.println(key + "---------------------------------------" + value);
+                }
+                
+            }
+
+
+            //empezando opcion 6, mostrar nombre y tipo de todas las cartas ordenadas por tipo
+            if(opcion2 == 6) {
+                
+            }
+
+            if(opcion2 == 7) {
+                System.out.println("\nGracias por utilizar el programa!\n");
+                seguir = false;
+            }
 
 
         }
