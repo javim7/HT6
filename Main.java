@@ -172,14 +172,10 @@ public class Main {
             //empezando opcion 3, mostrar info de las cartes en mi coleccion
             if(opcion2 == 3) {
 
-                ArrayList<String> llaves = new ArrayList<String>();
-                ArrayList<String> valores = new ArrayList<String>();
-
-                for (String llave: coleccion.keySet()) {
-                    String key = llave.toString();
-                    String value = coleccion.get(llave).toString();
-                    System.out.println(key + " " + value);
-                }
+                System.out.println("En su coleccion tiene las cartas:");
+                        for(String key: coleccion.keySet()){
+                            System.out.println("Carta: "+key+" ||De tipo: "+coleccion.get(key)+" ||Cantidad: "+coleccionCantidad.get(key));
+                        }
             }
 
 

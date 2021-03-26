@@ -19,28 +19,28 @@ public class Factory {
      * @param opcion
      * @return tipo de implementacion
      */
-    public Map<String, String> getStack (int opcion){
+    public Map queMapa (String opcion){
         
-        if (opcion==1) {
+        if (opcion.equals("1")) {
 
             System.out.println("Ha seleccionado Hashmap");
-            return new HashMap<String, String>();
+            return new HashMap();
         }
            
         
-        if (opcion==2) {
+        if (opcion.equals("2")) {
 
             System.out.println("Ha seleccionado Treemap");
-            return new TreeMap<String, String>();
+            return new TreeMap();
 
         }
             
         
-        if (opcion==3) {
+        if (opcion.equals("3")) {
             
         System.out.println("Ha seleccionado LinkedHashmap");
-        return new LinkedHashMap<String, String>();
-        
+        return new LinkedHashMap();
+
         }
         
         
