@@ -11,7 +11,7 @@ import java.util.*;
  * y jalar datos del factory..
  ***************************************/
 
-public class prueba {
+public class Main {
     private static Scanner input;
     public static void main(String[] args) throws IOException {
 
@@ -186,3 +186,7 @@ public class prueba {
         for (Map.Entry<K, V> entry : list) {
             result.put(entry.getKey(), entry.getValue());
         }
+
+        return result;
+    }
+}
